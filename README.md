@@ -54,7 +54,7 @@ npm ci
 4. Migrate the vehicles data:
 
 ```bash
-node ./migration/migrate-vehicle.js
+node ./migration/migrate-vehicles.js
 ```
 
 5. Run the `Node.js` server
