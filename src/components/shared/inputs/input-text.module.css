@@ -1,0 +1,12 @@
+input {
+  background-color: #101920;
+  border: solid 1px #20313c;
+  padding: 10px 5px 10px 15px;
+  color: #b0bec7;
+  border-radius: 5px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}

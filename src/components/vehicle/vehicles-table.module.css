@@ -1,0 +1,43 @@
+section {
+    margin-top: 30px;
+    width: 80%;
+    height: 90%;
+    margin: auto;
+    vertical-align: middle;
+    background-color: #111e27;
+    border-radius: 2px;
+    margin-top: 2%;
+}
+
+.blur {
+    filter: blur(4px);
+}
+
+table {
+    padding: 40px;
+    width: 100%;
+    > thead > tr > th {
+        border-bottom: #1a2f39 2px solid;
+    }
+    > tbody > tr {
+        height: 40px;
+        > td {
+                border-bottom: #172933 2px solid;
+            }
+    }
+}
+
+.emptyTable {
+    padding-left: 40px;
+}
+
+.vehicleDataFormat {
+    text-align: center;
+}
+
+.arrowButtonsGroup {
+    margin-left: 5%;
+    padding-bottom: 2%;
+    display: flex;
+    gap: 20px;
+}

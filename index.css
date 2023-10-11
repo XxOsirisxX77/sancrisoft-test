@@ -1,0 +1,35 @@
+@font-face {
+  font-family: 'Roboto';
+  src: url('./src/assets/fonts/roboto/Roboto-Regular.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('./src/assets/fonts/roboto/Roboto-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+}
+
+body {
+    font-family: 'Roboto', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    background-color: #101920;
+    color: #b0bec7;
+}
+
+input[type="text"], input[type="number"] {
+  height: 32px;
+  font-size: 14px;
+}
+
+footer {
+  position: absolute;
+  right: 0;
+  margin-right: 2%;
+  margin-top: -30px;
+  z-index: 1;
+  width: 200px;
+  bottom: 15px;
+}

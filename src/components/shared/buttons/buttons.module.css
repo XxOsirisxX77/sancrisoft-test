@@ -1,0 +1,43 @@
+.button {
+    background-color: #536c79;
+    cursor: pointer;
+}
+
+.button:disabled {
+    opacity: 0.7;
+}
+
+.textButton {
+    width: 150px;
+    height: 50px;
+    color: #fdfdfd;
+    padding: 12px 30px 12px 30px;
+    border: none;
+    border-radius: 5px;
+    > i {
+        margin-right: 10px;
+    }
+}
+
+.primaryButton {
+    background-color: #0098c6;
+}
+
+.arrowButton {
+    height: 65px;
+    width: 65px;
+    color: #fdfdfd;
+    border-radius: 5px;
+    font-size: 1.3rem;
+    background-color: #607584;
+}
+
+.circularButton {
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    color: #d7c825;
+    font-size: 0.7rem;
+    border: none;
+    background-color: #607584;
+}

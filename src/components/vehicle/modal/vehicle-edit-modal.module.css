@@ -1,0 +1,44 @@
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #1c2f3b54;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalContent {
+  width: 40%;
+  padding: 20px;
+  background-color: #111e27;
+}
+
+.modalHeader, .modalFooter {
+  padding: 10px;
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: right;
+  gap: 10px;
+}
+
+.modalTitle {
+  margin: 0;
+}
+
+.modalBody {
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  > div {
+    width: 50%;
+    margin-top: 20px;
+  }
+  > div > input {
+    width: 88%;
+  }
+}

@@ -1,0 +1,36 @@
+.toastContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.toast {
+  height: 50px;
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  border-radius: 10px;
+  margin-top: 5px;
+  > i {
+    font-weight: bold;
+  }
+}
+
+.toastSuccess {
+  color: #106114;
+  background-color: #e4f6e8;
+}
+
+.toastWarning {
+  color: #8d6318;
+  background-color: #e1d599;
+}
+
+.toastError {
+  color: #cf1c20;
+  background-color: #ffeaee;
+}
+
+.bold {
+  font-weight: bold;
+}
