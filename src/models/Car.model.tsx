@@ -3,5 +3,6 @@ export type Car = {
   make: string
   model: string
   year: number
+  location: string
   imageUrl: string
 }

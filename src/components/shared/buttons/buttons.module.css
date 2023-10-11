@@ -33,11 +33,17 @@
 }
 
 .circularButton {
+    margin: 0 5px 0 5px;
     height: 32px;
     width: 32px;
     border-radius: 50%;
-    color: #d7c825;
-    font-size: 0.7rem;
+    font-size: 0.9rem;
     border: none;
     background-color: #607584;
+    &.edit {
+        color: #d7c825; 
+    }
+    &.delete {
+        color: #ec676d
+    }
 }

@@ -41,10 +41,14 @@ const VehiclesTable = () => {
   useEffect(() => {
     isLoading.current = true
 
+    const controller = new AbortController()
+    const signal = controller.signal
+
     fetch(`${VEHICLES_URL}?page=${page}`, {
       mode: 'cors',
       method: 'GET',
-      headers: { 'Content-Type': 'application/json' }
+      headers: { 'Content-Type': 'application/json' },
+      signal
     })
       .then(async (response) => {
         if (!response.ok) {
@@ -54,9 +58,14 @@ const VehiclesTable = () => {
         return response.json()
       })
       .then((data: ServerVehicleData) => {
-        lastPage.current = data.total / VEHICLES_PER_PAGE
+        lastPage.current = Math.ceil(data.total / VEHICLES_PER_PAGE)
         if (!data.vehicles.length) {
           setPage(lastPage.current)
+          window.history.replaceState(
+            null,
+            '',
+            `${window.location.origin}?page=${lastPage.current}`
+          )
           return
         }
         setVehicles(data.vehicles)
@@ -64,30 +73,73 @@ const VehiclesTable = () => {
         data.vehicles.forEach((vehicle, index) => {
           fetch(
             `${LOREMFLICKR_URL}/${vehicle.year},${vehicle.make.replace(
-              / /g,
+              /[ /]/g,
               '_'
-            )},${vehicle.model.replace(/ /g, '_')}/all`
-          ).then((imageData: LoremFlickrData) => {
-            data.vehicles[index].imageUrl = imageData.url
-            setVehicles([...data.vehicles])
-          })
+            )},${vehicle.model.replace(/[ /]/g, '_')}/all`,
+            { signal }
+          )
+            .then((imageData: LoremFlickrData) => {
+              data.vehicles[index].imageUrl = imageData.url
+              setVehicles([...data.vehicles])
+            })
+            .catch((err) => {
+              if (err.name !== 'AbortError') {
+                toast.sendError?.({ message: err.message })
+              }
+            })
         })
       })
-      .catch((err) => toast.sendError?.({ message: err.message }))
+      .catch((err) => {
+        if (err.name !== 'AbortError') {
+          toast.sendError?.({ message: err.message })
+        }
+      })
+
+    return () => controller.abort()
   }, [page])
 
   const handlePrevious = () => {
     if (page === 1) return
     setPage(page - 1)
+    window.history.replaceState(
+      null,
+      '',
+      `${window.location.origin}?page=${page - 1}`
+    )
   }
 
   const handleNext = () => {
     setPage(page + 1)
+    window.history.replaceState(
+      null,
+      '',
+      `${window.location.origin}?page=${page + 1}`
+    )
   }
 
   const handleEdit = (vehicle: Car) => {
     setSelectedVehicle(vehicle)
     setShowModal(!showModal)
+  }
+
+  const handleDelete = (vehicle: Car) => {
+    fetch(`${VEHICLES_URL}/${vehicle.id}`, { method: 'DELETE' })
+      .then(async (response) => {
+        if (!response.ok) {
+          const data = await response.json()
+          throw new InternalServerError(data.error)
+        }
+        return response.json()
+      })
+      .then((data) => {
+        toast.sendSuccess?.({ message: data.message })
+        setPage(page)
+      })
+      .catch((err) => {
+        if (err.name !== 'AbortError') {
+          toast.sendError?.({ message: err.message })
+        }
+      })
   }
 
   const onCloseModal = () => {
@@ -109,6 +161,7 @@ const VehiclesTable = () => {
               <th>Year</th>
               <th>Make</th>
               <th>Model</th>
+              <th>Location</th>
               <th></th>
             </tr>
           </thead>
@@ -134,11 +187,17 @@ const VehiclesTable = () => {
                     <td>{vehicle.year}</td>
                     <td>{vehicle.make}</td>
                     <td>{vehicle.model}</td>
+                    <td>{vehicle.location}</td>
                     <td>
                       <CircularButton
                         action={() => handleEdit(vehicle)}
                         icon={Icon.EDIT}
                         title="edit-vehicle"
+                      ></CircularButton>
+                      <CircularButton
+                        action={() => handleDelete(vehicle)}
+                        icon={Icon.DELETE}
+                        title="delete-vehicle"
                       ></CircularButton>
                     </td>
                   </tr>

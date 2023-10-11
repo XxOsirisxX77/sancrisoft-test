@@ -29,6 +29,9 @@ const VehicleSkeletonTable = () => {
               <td>
                 <Skeleton />
               </td>
+              <td>
+                <Skeleton />
+              </td>
             </tr>
           </SkeletonTheme>
         )
