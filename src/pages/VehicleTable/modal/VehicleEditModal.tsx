@@ -1,14 +1,14 @@
 import { useContext, useState, useRef } from 'react'
-import InputText from '../../shared/inputs/InputText'
-import Button from '../../shared/buttons/Button'
+import InputText from 'src/components/inputs/InputText'
+import Button from 'src/components/buttons/Button'
 import styles from './vehicle-edit-modal.module.css'
-import VehicleContext from '../../../contexts/VehicleContext'
-import { Vehicle } from 'models/Car.model.tsx'
-import { VEHICLES_URL } from '../../../constants/server-constants'
-import { useToast } from '../../../hooks/useToast'
-import InternalServerError from '../../../errors/InternalServerError.tsx'
-import NotFoundError from '../../../errors/NotFoundError.tsx'
-import InvalidDataError from '../../../errors/InvalidDataError.tsx'
+import VehicleContext from 'src/contexts/VehicleContext'
+import { Vehicle } from 'src/models/Car.model.tsx'
+import { VEHICLES_URL } from 'src/constants/server-constants'
+import { useToast } from 'src/hooks/useToast'
+import InternalServerError from 'src/errors/InternalServerError.tsx'
+import NotFoundError from 'src/errors/NotFoundError.tsx'
+import InvalidDataError from 'src/errors/InvalidDataError.tsx'
 
 type VehicleEditModalProps = {
   vehicle: Vehicle
@@ -139,6 +139,7 @@ const VehicleEditModal = (props: VehicleEditModalProps) => {
           <div role="group" className={styles.modalFooter}>
             <Button
               text="Cancel"
+              type="button"
               isLoading={isLoading}
               disabled={isLoading}
               action={props.onClose}

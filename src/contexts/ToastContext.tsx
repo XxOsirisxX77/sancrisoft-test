@@ -1,4 +1,4 @@
-import { Toast } from 'models/Toast.model'
+import { Toast } from 'src/models/Toast.model'
 import { createContext } from 'react'
 
 type ToastContextProp = {

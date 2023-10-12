@@ -1,19 +1,19 @@
 import { useEffect, useState } from 'react'
-import { Vehicle } from '../../../models/Car.model'
+import { Vehicle } from 'src/models/Car.model'
 import { Navigate, useLocation } from 'react-router-dom'
-import { LOREMFLICKR_BIG_IMAGE_URL } from '../../../constants/thrid-party-url-constants'
+import { LOREMFLICKR_BIG_IMAGE_URL } from 'src/constants/thrid-party-url-constants'
 import { LoremFlickrData } from '../VehicleTable/VehiclesTable'
-import { useToast } from '../../../hooks/useToast'
+import { useToast } from 'src/hooks/useToast'
 import styles from './vehicle-details.module.css'
 import ArrowButton, {
   ButtonDirection
-} from '../../../components/shared/buttons/ArrowButton'
+} from 'src/components/buttons/ArrowButton'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import {
   SKELETON_BIG_IMAGE_SIZE,
   SKELETON_THEME_BASE_COLOR,
   SKELETON_THEME_HIGHLIGHT_COLOR
-} from '../../../constants/skeleton-constants'
+} from 'src/constants/skeleton-constants'
 
 const VehicleDetails = () => {
   const location = useLocation()

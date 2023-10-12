@@ -1,8 +1,8 @@
 import { FunctionComponent, PropsWithChildren, useMemo, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { Toast as ToastModel, ToastType } from '../../../models/Toast.model'
+import { Toast as ToastModel, ToastType } from 'src/models/Toast.model'
 import Toast from './Toast'
-import ToastContext from '../../../contexts/ToastContext'
+import ToastContext from 'src/contexts/ToastContext'
 import styles from './toast.module.css'
 
 const ToastContextProvider: FunctionComponent<PropsWithChildren> = ({

@@ -5,7 +5,7 @@ import {
   SKELETON_SMALL_IMAGE_SIZE,
   SKELETON_THEME_BASE_COLOR,
   SKELETON_THEME_HIGHLIGHT_COLOR
-} from '../../../constants/skeleton-constants'
+} from 'src/constants/skeleton-constants'
 
 const VehicleSkeletonTable = () => {
   const skeletonVehicles = useRef(new Array(10).fill(0))

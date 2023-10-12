@@ -1,5 +1,5 @@
 import styles from './toast.module.css'
-import { Toast as ToastModel, ToastType } from '../../../models/Toast.model'
+import { Toast as ToastModel, ToastType } from 'src/models/Toast.model'
 import ToastIcon from '../icons/ToastIcon'
 
 const TOAST_DURATION = 3000

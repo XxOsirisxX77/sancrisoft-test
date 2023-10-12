@@ -1,4 +1,4 @@
-import { ToastType } from '../../../models/Toast.model'
+import { ToastType } from 'src/models/Toast.model'
 
 type ToastIconProps = {
   toastType?: ToastType

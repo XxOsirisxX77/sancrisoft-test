@@ -1,28 +1,28 @@
 import { useEffect, useState, useRef } from 'react'
 import styles from './vehicles-table.module.css'
-import { Vehicle } from '../../../models/Car.model.tsx'
-import { VEHICLES_URL } from '../../../constants/server-constants.tsx'
-import { LOREMFLICKR_URL } from '../../../constants/thrid-party-url-constants.tsx'
+import { Vehicle } from 'src/models/Car.model.tsx'
+import { VEHICLES_URL } from 'src/constants/server-constants.tsx'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import ArrowButton, {
   ButtonDirection
-} from '../../shared/buttons/ArrowButton.tsx'
+} from 'src/components/buttons/ArrowButton.tsx'
 import CircularButton, {
   CTAIcon
-} from '../../shared/buttons/CircularButton.tsx'
-import VehicleEditModal from '../modal/VehicleEditModal.tsx'
-import VehicleContext from '../../../contexts/VehicleContext.tsx'
-import { useToast } from '../../../hooks/useToast.tsx'
+} from 'src/components/buttons/CircularButton.tsx'
+import VehicleEditModal from './modal/VehicleEditModal.tsx'
+import VehicleContext from 'src/contexts/VehicleContext.tsx'
+import { useToast } from 'src/hooks/useToast.tsx'
 import TableErrors from './TableErrors.tsx'
-import InternalServerError from '../../../errors/InternalServerError.tsx'
+import InternalServerError from 'src/errors/InternalServerError.tsx'
 import VehicleSkeletonTable from './VehicleSkeletonTable.tsx'
 import { useNavigate } from 'react-router-dom'
 import {
   SKELETON_SMALL_IMAGE_SIZE,
   SKELETON_THEME_BASE_COLOR,
   SKELETON_THEME_HIGHLIGHT_COLOR
-} from '../../../constants/skeleton-constants.tsx'
+} from '../../constants/skeleton-constants.tsx'
+import { LOREMFLICKR_URL } from 'src/constants/thrid-party-url-constants.tsx'
 
 const VEHICLES_PER_PAGE = 10
 

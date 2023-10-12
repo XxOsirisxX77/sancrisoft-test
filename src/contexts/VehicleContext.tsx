@@ -1,4 +1,4 @@
-import { Vehicle } from 'models/Car.model'
+import { Vehicle } from 'src/models/Car.model'
 import { createContext } from 'react'
 
 type VehicleContextProp = {

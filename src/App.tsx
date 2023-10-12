@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
-import VehiclesTable from './components/vehicle/VehicleTable/VehiclesTable'
-import VehicleDetails from './components/vehicle/VehicleDetails/VehicleDetails'
+import VehiclesTable from './pages/VehicleTable/VehiclesTable'
+import VehicleDetails from './pages/VehicleDetails/VehicleDetails'
 
 const App = () => {
   return (
