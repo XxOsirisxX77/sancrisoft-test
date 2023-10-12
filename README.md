@@ -21,6 +21,8 @@ This project uses:
 - Migration tool to retrieve and store the vehicles data.
 - Display a variety of vehicles with images and details.
 - Fetch vehicle data from the local `Node.js` API.
+- Delete and update vehicle data.
+- Display detail data of the vehicle once you click on its image in the table.
 - Simple and intuitive user interface.
 
 ## Getting Started
