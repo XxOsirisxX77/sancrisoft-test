@@ -1,9 +1,9 @@
-import { Car } from 'models/Car.model'
+import { Vehicle } from 'models/Car.model'
 import { createContext } from 'react'
 
 type VehicleContextProp = {
-  vehicles: Car[]
-  setVehicles: (vehicle: Car[]) => void
+  vehicles: Vehicle[]
+  setVehicles: (vehicle: Vehicle[]) => void
 }
 
 const VehicleContext = createContext<VehicleContextProp>({

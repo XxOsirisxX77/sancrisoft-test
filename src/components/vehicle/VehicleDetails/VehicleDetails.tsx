@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Car } from '../../../models/Car.model'
+import { Vehicle } from '../../../models/Car.model'
 import { Navigate, useLocation } from 'react-router-dom'
 import { LOREMFLICKR_BIG_IMAGE_URL } from '../../../constants/thrid-party-url-constants'
 import { LoremFlickrData } from '../VehicleTable/VehiclesTable'
@@ -19,7 +19,7 @@ const VehicleDetails = () => {
   const location = useLocation()
   const toast = useToast()
 
-  const [vehicle, setVehicle] = useState<Car>(location.state?.vehicle)
+  const [vehicle, setVehicle] = useState<Vehicle>(location.state?.vehicle)
   const [isLoading, setLoading] = useState(true)
 
   if (!vehicle) {

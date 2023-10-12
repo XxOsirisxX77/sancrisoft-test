@@ -1,8 +1,7 @@
-import EditIcon from '../icons/EditIcon'
-import TrashIcon from '../icons/TrashIcon'
+import CTAButtonIcon from '../icons/CTAButtonIcon'
 import styles from './buttons.module.css'
 
-export enum Icon {
+export enum CTAIcon {
   EDIT,
   DELETE
 }
@@ -15,7 +14,7 @@ type CircularButtonProps = {
 
 const CircularButton = (props: CircularButtonProps) => {
   const buttonIntentClass =
-    props.icon === Icon.EDIT ? styles.edit : styles.delete
+    props.icon === CTAIcon.EDIT ? styles.edit : styles.delete
   return (
     <>
       <button
@@ -28,7 +27,7 @@ const CircularButton = (props: CircularButtonProps) => {
         title={props.title}
         type="button"
       >
-        {props.icon === Icon.EDIT ? <EditIcon /> : <TrashIcon />}
+        <CTAButtonIcon ctaButtonIcon={props.icon} />
       </button>
     </>
   )

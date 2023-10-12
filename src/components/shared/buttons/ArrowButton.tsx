@@ -1,5 +1,4 @@
-import LeftArrowIcon from '../icons/LeftArrowIcon'
-import RightArrowIcon from '../icons/RightArrowIcon'
+import ButtonDirectionIcon from '../icons/ButtonDirectionIcon'
 import styles from './buttons.module.css'
 
 export enum ButtonDirection {
@@ -14,13 +13,6 @@ type ArrowButtonProps = {
 }
 
 const ArrowButton = (props: ArrowButtonProps) => {
-  let icon
-  if (props.buttonDirection === ButtonDirection.LEFT) {
-    icon = <LeftArrowIcon />
-  } else {
-    icon = <RightArrowIcon />
-  }
-
   const title = `${
     props.buttonDirection === ButtonDirection.LEFT ? 'left' : 'right'
   }-arrow`
@@ -39,7 +31,7 @@ const ArrowButton = (props: ArrowButtonProps) => {
         title={title}
         aria-label={ariaLabel}
       >
-        {icon}
+        <ButtonDirectionIcon buttonDirection={props.buttonDirection} />
       </button>
     </>
   )

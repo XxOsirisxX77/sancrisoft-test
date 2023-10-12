@@ -1,8 +1,6 @@
-import SuccessIcon from '../icons/SuccessIcon'
 import styles from './toast.module.css'
 import { Toast as ToastModel, ToastType } from '../../../models/Toast.model'
-import ErrorIcon from '../icons/ErrorIcon'
-import WarningIcon from '../icons/WarningIcon'
+import ToastIcon from '../icons/ToastIcon'
 
 const TOAST_DURATION = 3000
 
@@ -32,9 +30,7 @@ const Toast = (props: ToastContextProp) => {
       aria-describedby="toast-message"
       className={[styles.toast, toastTypeClass].join(' ')}
     >
-      {props.toast.type === ToastType.SUCCESS && <SuccessIcon />}
-      {props.toast.type === ToastType.WARNING && <WarningIcon />}
-      {props.toast.type === ToastType.ERROR && <ErrorIcon />}
+      <ToastIcon toastType={props.toast.type} />
       <div id="toast-message" role="alert">
         {props.toast.message}
       </div>

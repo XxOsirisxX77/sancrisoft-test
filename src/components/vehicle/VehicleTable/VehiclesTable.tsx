@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
 import styles from './vehicles-table.module.css'
-import { Car } from '../../../models/Car.model.tsx'
+import { Vehicle } from '../../../models/Car.model.tsx'
 import { VEHICLES_URL } from '../../../constants/server-constants.tsx'
 import { LOREMFLICKR_URL } from '../../../constants/thrid-party-url-constants.tsx'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
@@ -8,7 +8,9 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import ArrowButton, {
   ButtonDirection
 } from '../../shared/buttons/ArrowButton.tsx'
-import CircularButton, { Icon } from '../../shared/buttons/CircularButton.tsx'
+import CircularButton, {
+  CTAIcon
+} from '../../shared/buttons/CircularButton.tsx'
 import VehicleEditModal from '../modal/VehicleEditModal.tsx'
 import VehicleContext from '../../../contexts/VehicleContext.tsx'
 import { useToast } from '../../../hooks/useToast.tsx'
@@ -25,7 +27,7 @@ import {
 const VEHICLES_PER_PAGE = 10
 
 export type ServerVehicleData = {
-  vehicles: Car[]
+  vehicles: Vehicle[]
   total: number
 }
 
@@ -37,8 +39,9 @@ const VehiclesTable = () => {
   const searchParams = new URLSearchParams(document.location.search)
   const pageQuery: number = parseInt(searchParams.get('page') || '1')
 
-  const [vehicles, setVehicles] = useState<Car[]>([])
-  const [selectedVehicle, setSelectedVehicle] = useState<Car>()
+  const [vehicles, setVehicles] = useState<Vehicle[]>([])
+  const [selectedVehicle, setSelectedVehicle] = useState<Vehicle>()
+  const [reload, setReload] = useState({})
   const [page, setPage] = useState(isNaN(pageQuery) ? 1 : pageQuery)
   const [showModal, setShowModal] = useState(false)
 
@@ -106,7 +109,7 @@ const VehiclesTable = () => {
       })
 
     return () => controller.abort()
-  }, [page])
+  }, [page, reload])
 
   const handlePrevious = () => {
     if (page === 1) return
@@ -127,12 +130,12 @@ const VehiclesTable = () => {
     )
   }
 
-  const handleEdit = (vehicle: Car) => {
+  const handleEdit = (vehicle: Vehicle) => {
     setSelectedVehicle(vehicle)
     setShowModal(!showModal)
   }
 
-  const handleDelete = (vehicle: Car) => {
+  const handleDelete = (vehicle: Vehicle) => {
     fetch(`${VEHICLES_URL}/${vehicle.id}`, { method: 'DELETE' })
       .then(async (response) => {
         if (!response.ok) {
@@ -143,7 +146,7 @@ const VehiclesTable = () => {
       })
       .then((data) => {
         toast.sendSuccess?.({ message: data.message })
-        window.location.reload()
+        setReload({})
       })
       .catch((err) => {
         if (err.name !== 'AbortError') {
@@ -156,7 +159,7 @@ const VehiclesTable = () => {
     setShowModal(false)
   }
 
-  const handleDetailsPage = (vehicle: Car) => {
+  const handleDetailsPage = (vehicle: Vehicle) => {
     navigate('/details', { state: { vehicle } })
   }
 
@@ -213,12 +216,12 @@ const VehiclesTable = () => {
                     <td>
                       <CircularButton
                         action={() => handleEdit(vehicle)}
-                        icon={Icon.EDIT}
+                        icon={CTAIcon.EDIT}
                         title="edit-vehicle"
                       ></CircularButton>
                       <CircularButton
                         action={() => handleDelete(vehicle)}
-                        icon={Icon.DELETE}
+                        icon={CTAIcon.DELETE}
                         title="delete-vehicle"
                       ></CircularButton>
                     </td>

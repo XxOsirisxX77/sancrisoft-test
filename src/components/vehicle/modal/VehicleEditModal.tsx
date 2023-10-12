@@ -3,7 +3,7 @@ import InputText from '../../shared/inputs/InputText'
 import Button from '../../shared/buttons/Button'
 import styles from './vehicle-edit-modal.module.css'
 import VehicleContext from '../../../contexts/VehicleContext'
-import { Car } from 'models/Car.model.tsx'
+import { Vehicle } from 'models/Car.model.tsx'
 import { VEHICLES_URL } from '../../../constants/server-constants'
 import { useToast } from '../../../hooks/useToast'
 import InternalServerError from '../../../errors/InternalServerError.tsx'
@@ -11,7 +11,7 @@ import NotFoundError from '../../../errors/NotFoundError.tsx'
 import InvalidDataError from '../../../errors/InvalidDataError.tsx'
 
 type VehicleEditModalProps = {
-  vehicle: Car
+  vehicle: Vehicle
   show: boolean
   onClose: () => void
 }
