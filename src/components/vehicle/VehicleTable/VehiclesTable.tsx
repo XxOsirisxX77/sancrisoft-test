@@ -1,18 +1,26 @@
 import { useEffect, useState, useRef } from 'react'
 import styles from './vehicles-table.module.css'
-import { Car } from '../../models/Car.model.tsx'
-import { VEHICLES_URL } from '../../constants/server-constants'
-import { LOREMFLICKR_URL } from '../../constants/thrid-party-url-constants'
+import { Car } from '../../../models/Car.model.tsx'
+import { VEHICLES_URL } from '../../../constants/server-constants.tsx'
+import { LOREMFLICKR_URL } from '../../../constants/thrid-party-url-constants.tsx'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
-import ArrowButton, { ButtonDirection } from '../shared/buttons/ArrowButton.tsx'
-import CircularButton, { Icon } from '../shared/buttons/CircularButton.tsx'
-import VehicleEditModal from './modal/VehicleEditModal.tsx'
-import VehicleContext from '../../contexts/VehicleContext.tsx'
-import { useToast } from '../../hooks/useToast.tsx'
+import ArrowButton, {
+  ButtonDirection
+} from '../../shared/buttons/ArrowButton.tsx'
+import CircularButton, { Icon } from '../../shared/buttons/CircularButton.tsx'
+import VehicleEditModal from '../modal/VehicleEditModal.tsx'
+import VehicleContext from '../../../contexts/VehicleContext.tsx'
+import { useToast } from '../../../hooks/useToast.tsx'
 import TableErrors from './TableErrors.tsx'
-import InternalServerError from '../../errors/InternalServerError.tsx'
+import InternalServerError from '../../../errors/InternalServerError.tsx'
 import VehicleSkeletonTable from './VehicleSkeletonTable.tsx'
+import { useNavigate } from 'react-router-dom'
+import {
+  SKELETON_SMALL_IMAGE_SIZE,
+  SKELETON_THEME_BASE_COLOR,
+  SKELETON_THEME_HIGHLIGHT_COLOR
+} from '../../../constants/skeleton-constants.tsx'
 
 const VEHICLES_PER_PAGE = 10
 
@@ -20,6 +28,7 @@ export type ServerVehicleData = {
   vehicles: Car[]
   total: number
 }
+
 export type LoremFlickrData = {
   url: string
 }
@@ -35,6 +44,7 @@ const VehiclesTable = () => {
 
   const lastPage = useRef(1)
   const isLoading = useRef(true)
+  const navigate = useNavigate()
 
   const toast = useToast()
 
@@ -133,7 +143,7 @@ const VehiclesTable = () => {
       })
       .then((data) => {
         toast.sendSuccess?.({ message: data.message })
-        setPage(page)
+        window.location.reload()
       })
       .catch((err) => {
         if (err.name !== 'AbortError') {
@@ -144,6 +154,10 @@ const VehiclesTable = () => {
 
   const onCloseModal = () => {
     setShowModal(false)
+  }
+
+  const handleDetailsPage = (vehicle: Car) => {
+    navigate('/details', { state: { vehicle } })
   }
 
   return (
@@ -172,14 +186,22 @@ const VehiclesTable = () => {
                   <tr key={vehicle.id} className={styles.vehicleDataFormat}>
                     <td>
                       {vehicle.imageUrl && (
-                        <img src={vehicle.imageUrl} alt="vehicle image" />
+                        <img
+                          className={styles.vehicleImage}
+                          src={vehicle.imageUrl}
+                          alt="vehicle image"
+                          onClick={() => handleDetailsPage(vehicle)}
+                        />
                       )}
                       {!vehicle.imageUrl && (
                         <SkeletonTheme
-                          baseColor="#607584"
-                          highlightColor="#8ca3b4"
+                          baseColor={SKELETON_THEME_BASE_COLOR}
+                          highlightColor={SKELETON_THEME_HIGHLIGHT_COLOR}
                         >
-                          <Skeleton width={26} height={26} />
+                          <Skeleton
+                            width={SKELETON_SMALL_IMAGE_SIZE}
+                            height={SKELETON_SMALL_IMAGE_SIZE}
+                          />
                         </SkeletonTheme>
                       )}
                     </td>

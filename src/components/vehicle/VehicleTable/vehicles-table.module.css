@@ -1,4 +1,4 @@
-section {
+.section {
     margin-top: 30px;
     width: 80%;
     height: 90%;
@@ -13,7 +13,7 @@ section {
     filter: blur(4px);
 }
 
-table {
+.table {
     padding: 40px;
     width: 100%;
     > thead > tr > th {
@@ -29,6 +29,10 @@ table {
 
 .emptyTable {
     padding-left: 40px;
+}
+
+.vehicleImage:hover {
+    cursor: pointer;
 }
 
 .vehicleDataFormat {

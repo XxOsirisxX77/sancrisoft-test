@@ -106,8 +106,14 @@ const VehicleEditModal = (props: VehicleEditModalProps) => {
           }}
           autoComplete="off"
         >
-          <div role="heading" className={styles.modalHeader}>
-            <h2 className={styles.modalTitle}>Vehicle Edit</h2>
+          <div
+            aria-labelledby="modal-title"
+            role="heading"
+            className={styles.modalHeader}
+          >
+            <h2 id="modal-title" className={styles.modalTitle}>
+              Vehicle Edit
+            </h2>
           </div>
           <div role="group" className={styles.modalBody}>
             <InputText

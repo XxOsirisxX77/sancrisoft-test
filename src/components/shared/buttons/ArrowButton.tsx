@@ -9,7 +9,7 @@ export enum ButtonDirection {
 
 type ArrowButtonProps = {
   buttonDirection: number
-  disabled: boolean
+  disabled?: boolean
   action: () => void
 }
 
